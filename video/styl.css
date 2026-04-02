@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Sembunyikan scrollbar */
+  }
+  
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ec427b; /* Pink Tua */
+    display: flex;   /*  Mengatur agar elemen anak berada di tengah */
+    justify-content: center;  /* Menempatkan video di tengah secara horizontal */
+    align-items: center;  /* Menempatkan video di tengah secara vertikal */
+    overflow: hidden; /* Sembunyikan scrollbar */
+    flex-direction: column; /* Mengatur agar video dan tombol berada di kolom */
+    gap: 20px; /* Menambahkan jarak antara video dan tombol */
+  }
+  
+  .video-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+      to right, 
+      transparent, 
+      transparent 1px, 
+      rgba(255, 255, 255, 0.1) 1px, 
+      rgba(255, 255, 255, 0.1) 2px
+    );
+    animation: flicker 2s linear infinite; /* Efek kerlip-kerlip */
+  }
+  
+  .video-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Agar bintang tidak menghalangi klik */
+    background-size: cover;
+    background-repeat: repeat;
+    animation: fallingStars 10s linear infinite; /* Animasi bintang */
+  }
+  
+  .video-container video {
+    width: 900px;  /* Atur lebar video (sesuaikan dengan keinginan) */
+    height: 525px;  /* Atur tinggi video (sesuaikan dengan keinginan) */
+    object-fit: contain; /*  Menyesuaikan video agar mengisi container, 
+                              mungkin ada bagian video yang terpotong */
+  }
+  
+  .back-button {
+    background-color: rgb(28, 2, 75);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  @keyframes flicker {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fallingStars {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 500px; /* Sesuaikan nilai ini untuk mengatur kecepatan bintang jatuh */
+    }
+  }
